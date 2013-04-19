@@ -105,7 +105,7 @@ libraries[spyc][download][url] = "https://raw.github.com/mustangostang/spyc/mast
 libraries[spyc][directory_name] = "spyc"
 libraries[spyc][type] = "library"
 
-; @TO-DO: Revised inclusion for drupal-org.version
+; @TO-DO: Revise inclusion for drupal-org.version
 ; Waiting for answer in issue: http://drupal.org/node/1945806
 ; Create an optional task in the profile if it is not acceptable in the whitelist 
 libraries[codemirror][download][type] = "git"

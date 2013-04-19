@@ -10,13 +10,13 @@ function commerce_kickstart_admin_preprocess_maintenance_page(&$vars) {
   // shiny_preprocess_html() also happen on the maintenance page, it has to be
   // called here.
   shiny_preprocess_html($vars);
-  /*if (variable_get('install_task') != 'done') {
-    $footer_markup =  '<div class="message">' . t('Proudly built by') . '</div>';
-    $footer_markup .=  '<div class="logo">' . t('<a href="@url">Commerce Guys</a>', array('@url' => 'http://www.commerceguys.com')) . '</div>';
+  if (variable_get('install_task') != 'done') {
+    $footer_markup =  '<div class="message">' . t('Built and maintained by developers working on') . '</div>';
+    $footer_markup .=  '<div class="logo">' . t('<a href="@url">QLectives</a>', array('@url' => 'http://www.qlectives.eu')) . '</div>';
     $vars['footer'] = array(
       '#prefix' => '<div id="credit" class="clearfix">',
       '#markup' => $footer_markup,
       '#suffix' => '</div>',
     );
-  }*/
+  }
 }
