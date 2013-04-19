@@ -66,6 +66,32 @@ projects[field_remove_item][version] = "1.0-rc1"
 ;@TO-DO: Remove for drupal-org.version
 ; This is the equivalent of the custom modules in the future drupal-org.make file
 ; Analyze if it is possible to fetch them from Drupal.org or if they should be included in custom instead
+projects[qscience][type] = "module"
+projects[qscience][subdir] = "custom"
+projects[qscience][download][type] = "git"
+projects[qscience][download][url] = "git://github.com/QScience/QScience.git"
+projects[qscience][download][branch] = "reference_develop"
+
+projects[arxiv][type] = "module"
+projects[arxiv][subdir] = "custom"
+projects[arxiv][download][type] = "git"
+projects[arxiv][download][url] = "git://github.com/QScience/arxiv.git"
+
+projects[qtr][type] = "module"
+projects[qtr][subdir] = "custom"
+projects[qtr][download][type] = "git"
+projects[qtr][download][url] = "https://github.com/QScience/qtr.git"
+
+projects[pdfparser][type] = "module"
+projects[pdfparser][subdir] = "custom"
+projects[pdfparser][download][type] = "git"
+projects[pdfparser][download][url] = "git://github.com/QScience/pdfparser.git"
+
+projects[d2d][type] = "module"
+projects[d2d][subdir] = "custom"
+projects[d2d][download][type] = "git"
+projects[d2d][download][url] = "git://github.com/QScience/d2d.git"
+
 
 
 ; Libraries
