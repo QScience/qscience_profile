@@ -3,7 +3,7 @@ api = 2
 core = 7.x
 
 ;This is just to try the make file locally and it will be removed in the final version
-projects[drupal][version] = 7.22
+;projects[drupal][version] = 7.22
 
 ; Patterns: contrib modules dependencies
 
