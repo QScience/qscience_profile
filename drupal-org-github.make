@@ -63,6 +63,9 @@ projects[votingapi][version] = "2.11"
 projects[field_remove_item][subdir] = "contrib"
 projects[field_remove_item][version] = "1.0-rc1"
 
+; qscience_profile_theme: base theme dependency
+projects[shiny][version] = "1.1"
+
 ;@TO-DO: Remove for drupal-org.version
 ; This is the equivalent of the custom modules in the future drupal-org.make file
 ; Analyze if it is possible to fetch them from Drupal.org or if they should be included in custom instead

@@ -62,6 +62,8 @@ projects[votingapi][version] = "2.11"
 projects[field_remove_item][subdir] = "contrib"
 projects[field_remove_item][version] = "1.0-rc1"
 
+; qscience_profile_theme: base theme dependency
+projects[shiny][version] = "1.1"
 
 ; Libraries
 
