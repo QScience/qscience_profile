@@ -434,7 +434,10 @@ function qscience_profile_visualscience_settings_form_validate($form, &$form_sta
 /**
  * Implements qscience_profile_pdfparser_settings_form_submit().
  */
-function qscience_profile_visualscience_settings_form__submit($form, &$form_state) {
+function qscience_profile_visualscience_settings_form_submit($form, &$form_state) {
+  
+  variable_set('livingscience_first_name', $form_state['values']['livingscience_first_name']);
+  variable_set('livingscience_last_name', $form_state['values']['livingscience_last_name']);
 
 }
 
