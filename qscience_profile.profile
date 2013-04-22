@@ -21,17 +21,29 @@
 function qscience_profile_install_tasks() {
   $tasks = array();
 
-  // Add a page to allow running some patterns
+  // Add a page to send the public key to the PDF server
   $tasks['qscience_profile_pdfparser_settings_form'] = array(
       'display_name' => st('Configure PDF Parser'),
       'type' => 'form',
   );
   
-  // Add a page to allow running some patterns
+  // Add a page to allow the user to configure the QTR algorithm
   $tasks['qscience_profile_qtr_settings_form'] = array(
       'display_name' => st('Configure QTR'),
       'type' => 'form',
-  );  
+  );
+  
+  // Add a page to configure Visual Science
+  $tasks['qscience_profile_visualscience_settings_form'] = array(
+   'display_name' => st('Configure D2D'),
+      'type' => 'form',
+  );
+  
+  // Add a page to configure D2D
+  /*$tasks['qscience_profile_d2d_settings_form'] = array(
+      'display_name' => st('Configure D2D'),
+      'type' => 'form',
+  );*/
   
   // Add a page to allow running some patterns
   $tasks['qscience_profile_patterns_settings_form'] = array(
@@ -366,6 +378,28 @@ function qscience_profile_qtr_settings_form_submit($form, &$form_state) {
   drupal_set_message(st('QTR settings have been successfully saved.'));
 }
 
+
+/**
+ * Implements qscience_profile_visualscience_settings_form().
+ */
+function qscience_profile_visualscience_settings_form($form, &$form_state, &$install_state) {
+
+}
+
+/**
+ * Implements qscience_profile_visualscience_settings_form_validate().
+ * 
+ * @TO-DO: Ask if some validation is required
+ */
+function qscience_profile_visualscience_settings_form_validate($form, &$form_state) {
+}
+
+/**
+ * Implements qscience_profile_pdfparser_settings_form_submit().
+ */
+function qscience_profile_visualscience_settings_form__submit($form, &$form_state) {
+
+}
 
 /**
  * Implements qscience_profile_patterns_settings_form().
