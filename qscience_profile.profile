@@ -170,7 +170,7 @@ function qscience_profile_form_install_configure_form_alter(&$form, $form_state)
   // Set a default name for the site
   $form['site_information']['site_name']['#default_value'] = st('QScience Instance');
 
-  // Set a default country so we can benefit from it on Address Fields.
+  // Testing a default country so we can benefit from it on Address Fields. 
   $form['server_settings']['site_default_country']['#default_value'] = 'BE';
 
   // Hide Update Notifications.
@@ -181,6 +181,8 @@ function qscience_profile_form_install_configure_form_alter(&$form, $form_state)
  * Implements qscience_profile_pdfparser_settings_form().
  */
 function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install_state) {
+  drupal_set_title(st('PDF Parser settings'));
+  
   $form['server_url'] = array(
       '#type' => 'textfield',
       '#title' => 'The server URL',
@@ -246,6 +248,7 @@ function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
  * Implements qscience_profile_qtr_settings_form().
  */
 function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state) {
+  drupal_set_title(st('Configure QTR algorithm'));
   //$form = array();
   $posttype = array ();
   $default = array();
@@ -402,6 +405,7 @@ function qscience_profile_qtr_settings_form_submit($form, &$form_state) {
  *  @TODO: Ask if we need to expand this form with fields from the rest of the related custom modules. 
  */
 function qscience_profile_visualscience_settings_form($form, &$form_state, &$install_state) {
+  drupal_set_title(st('Visual Science settings'));
   
   $form['livingscience_first_name'] = array(
       '#type' => 'textfield',
@@ -452,10 +456,8 @@ function qscience_profile_visualscience_settings_form_validate($form, &$form_sta
  * Implements qscience_profile_pdfparser_settings_form_submit().
  */
 function qscience_profile_visualscience_settings_form_submit($form, &$form_state) {
-  
   variable_set('livingscience_first_name', $form_state['values']['livingscience_first_name']);
   variable_set('livingscience_last_name', $form_state['values']['livingscience_last_name']);
-
 }
 
 /**
@@ -464,11 +466,13 @@ function qscience_profile_visualscience_settings_form_submit($form, &$form_state
  *  @TODO: Ask if we need to simplify this form somehow.
  */
 function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state) {
+  drupal_set_title(st('Drupal To Drupal settings'));
+  
   $form = array();
   
-  $form['introduction'] = array(
+  /*$form['introduction'] = array(
       '#markup' => t('Before using D2D, please provide a @length characters long D2D identifier. This identifier should be unique among all installations of D2D. It is recommended to generate that identifier randomly (e.g. by using the button below). If you installed D2D before, you can reuse the identifier of your old installation.', array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)),
-  );
+  );*/
   $form['name'] = array(
       '#type' => 'textfield',
       '#title' => t('Name'),
@@ -483,7 +487,7 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
       '#title' => t('D2D Identifier'),
       '#description' =>
       t(
-          'Globally unique identifier consisting of exactly @length hexadecimal characters (A-F, 0-9).<br/>' .
+          'A random Globally unique identifier has been automatically created. In case you need to modify it it should consist of exactly @length hexadecimal characters (A-F, 0-9).<br/>' .
           'Note: once you have saved the global identifier, it cannot be changed anymore.',
           array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)
       ),
