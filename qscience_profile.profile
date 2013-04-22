@@ -23,33 +23,34 @@ function qscience_profile_install_tasks() {
 
   // Add a page to send the public key to the PDF server
   $tasks['qscience_profile_pdfparser_settings_form'] = array(
-      'display_name' => st('Configure PDF Parser'),
+      'display_name' => st('PDF Parser'),
       'type' => 'form',
   );
   
   // Add a page to allow the user to configure the QTR algorithm
   $tasks['qscience_profile_qtr_settings_form'] = array(
-      'display_name' => st('Configure QTR'),
+      'display_name' => st('Quality, Trust and Reputation'),
       'type' => 'form',
   );
   
   // Add a page to configure Visual Science
   $tasks['qscience_profile_visualscience_settings_form'] = array(
-   'display_name' => st('Configure Visual Science'),
+   'display_name' => st('Visual Science'),
       'type' => 'form',
   );
   
   // Add a page to configure D2D
-  /*$tasks['qscience_profile_d2d_settings_form'] = array(
-      'display_name' => st('Configure D2D'),
-      'type' => 'form',
-  );*/
-  
-  // Add a page to allow running some patterns
-  $tasks['qscience_profile_patterns_settings_form'] = array(
-      'display_name' => st('Choose Content Types'),
+  $tasks['qscience_profile_d2d_settings_form'] = array(
+      'display_name' => st('Drupal to Drupal'),
       'type' => 'form',
   );
+  
+  // Add a page to allow running some patterns
+  // Skipping this for the moment
+  /*$tasks['qscience_profile_patterns_settings_form'] = array(
+      'display_name' => st('Choose Content Types'),
+      'type' => 'form',
+  );*/
   return $tasks;
 }
 
@@ -438,6 +439,127 @@ function qscience_profile_visualscience_settings_form_submit($form, &$form_state
   
   variable_set('livingscience_first_name', $form_state['values']['livingscience_first_name']);
   variable_set('livingscience_last_name', $form_state['values']['livingscience_last_name']);
+
+}
+
+/**
+ * Implements qscience_profile_d2d_settings_form().
+ *
+ *  @TODO: Ask if we need to simplify this form somehow.
+ */
+function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state) {
+  $form = array();
+  
+  $form['introduction'] = array(
+      '#markup' => t('Before using D2D, please provide a @length characters long D2D identifier. This identifier should be unique among all installations of D2D. It is recommended to generate that identifier randomly (e.g. by using the button below). If you installed D2D before, you can reuse the identifier of your old installation.', array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)),
+  );
+  $form['name'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Name'),
+      '#description' => t('A short name describing your instance.'),
+      '#default_value' => _d2d_suggest_instance_name($GLOBALS['base_url']),
+      '#size' => D2D_INSTANCE_NAME_MAX_LENGTH,
+      '#maxlength' => D2D_INSTANCE_NAME_MAX_LENGTH,
+      '#required' => FALSE,
+  );
+  $form['id'] = array(
+      '#type' => 'textfield',
+      '#title' => t('D2D Identifier'),
+      '#description' =>
+      t(
+          'Globally unique identifier consisting of exactly @length hexadecimal characters (A-F, 0-9).<br/>' .
+          'Note: once you have saved the global identifier, it cannot be changed anymore.',
+          array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)
+      ),
+      '#default_value' => d2d_random_d2d_id(),
+      '#size' => D2D_INSTANCE_IDENTIFIER_LENGTH,
+      '#maxlength' => D2D_INSTANCE_IDENTIFIER_LENGTH,
+      '#required' => TRUE,
+  );
+  $form['address'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Address'),
+      '#description' => t('The address under which this instance is reachable.'),
+      '#default_value' => $GLOBALS['base_url'] . '/xmlrpc.php',
+      '#size' => 40,
+      '#maxlength' => D2D_INSTANCE_URL_MAX_LENGTH,
+      '#required' => TRUE,
+  );
+  $form['auto_keys_and_online'] = array(
+      '#type' => 'checkbox',
+      '#default_value' => TRUE,
+      '#title' => t('Automatically select public / private key pair and go online.'),
+      '#description' => t('If selected, a random public / private key pair is automatically chosen and the instance will be marked as online, i.e. other instances will be able to see this instance and to communicate with this instance. Do not select this option if you want to manually set your public / private key pair, e.g. to reuse keys you have used with an old installation or if you do not want your instance to be online immediatelly.'),
+  );
+  $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Save and continue'),
+  );
+  /*$form['generate'] = array(
+      '#type' => 'submit',
+      '#value' => t('Generate random identifier'),
+      '#validate' => array('d2d_form_init_generate_validate'),
+      '#submit' => array(),
+  );*/
+  return $form;
+}
+
+/**
+ * Implements qscience_profile_d2d_settings_form_validate().
+ *
+ * @TO-DO: Ask if the validation should be simplified
+ */
+function qscience_profile_d2d_settings_form_validate($form, &$form_state) {
+  $id = $form_state['values']['id'];
+  if (!d2d_check_d2d_id_length($id)) {
+    form_set_error('id', st('Identifier must constist of exactly @length characters.', array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)));
+  }
+  if (!d2d_is_hex_string($id)) {
+    form_set_error('id', st('Identifier must consists only of hexadecimal characters (A-F, 0-9).'));
+  }
+  if (!d2d_check_url($form_state['values']['address'])) {
+    form_set_error('address', st('Address must start with \'http://\' or \'https://\'.'));
+  }
+}
+
+/**
+ * Implements qscience_profile_d2d_settings_form_submit().
+ */
+function qscience_profile_d2d_settings_form_submit($form, &$form_state) {
+  if ($form_state['values']['auto_keys_and_online']) {
+    if (!d2d_create_keys($my_public_key, $my_private_key)) {
+      drupal_set_message(t('Failed creating public / private key pair.'), 'error');
+      return;
+    }
+    variable_set('d2d_public_key', $my_public_key);
+    variable_set('d2d_private_key', $my_private_key);
+  }
+  $my_d2d_id = $form_state['values']['id'];
+  // add own instance to database
+  $my_id = db_insert('d2d_instances')->fields(array(
+      'name' => $form_state['values']['name'],
+      'url' => $GLOBALS['base_url'] . '/xmlrpc.php',
+      'd2d_id' => $my_d2d_id,
+      'description' => 'this instance.',
+      'time_inserted' => d2d_get_time(),
+      'public_key_id' => NULL,
+  ))->execute();
+  variable_set('d2d_my_id', $my_id);
+  if ($form_state['values']['auto_keys_and_online']) {
+    $my_public_key_id = db_insert('d2d_public_keys')->fields(array(
+        'instance_id' => $my_id,
+        'public_key' => $my_public_key,
+    ))->execute();
+    $num_updated = db_update('d2d_instances')
+    ->fields(array(
+        'public_key_id' => $my_public_key_id,
+    ))
+    ->condition('id', $my_id)
+    ->execute();
+    variable_set('d2d_online', TRUE);
+  }
+  //menu_rebuild();
+  //drupal_set_message(t('Settings have been saved.'));
 
 }
 
