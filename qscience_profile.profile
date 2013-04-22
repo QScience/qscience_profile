@@ -162,6 +162,22 @@ function install_welcome_submit($form, &$form_state) {
 }
 
 /**
+ * Implements hook_form_alter().
+ *
+ * Allows the profile to alter the site configuration form.
+ */
+function qscience_profile_form_install_configure_form_alter(&$form, $form_state) {
+  // Set a default name for the site
+  $form['site_information']['site_name']['#default_value'] = st('QScience Instance');
+
+  // Set a default country so we can benefit from it on Address Fields.
+  $form['server_settings']['site_default_country']['#default_value'] = 'BE';
+
+  // Hide Update Notifications.
+  $form['update_notifications']['#access'] = FALSE;
+}
+
+/**
  * Implements qscience_profile_pdfparser_settings_form().
  */
 function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install_state) {
