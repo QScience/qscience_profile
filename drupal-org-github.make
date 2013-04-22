@@ -95,6 +95,21 @@ projects[d2d][subdir] = "custom"
 projects[d2d][download][type] = "git"
 projects[d2d][download][url] = "git://github.com/QScience/d2d.git"
 
+projects[visualscience][type] = "module"
+projects[visualscience][subdir] = "custom"
+projects[visualscience][download][type] = "git"
+projects[visualscience][download][url] = "git://github.com/QScience/VisualScience.git"
+
+; Visualscience custom modules dependencies. @TO-DO: This might disappear with the new branch
+projects[livingscience][type] = "module"
+projects[livingscience][subdir] = "custom"
+projects[livingscience][download][type] = "git"
+projects[livingscience][download][url] = "git://github.com/QScience/livingscience.git"
+
+projects[user_list][type] = "module"
+projects[user_list][subdir] = "custom"
+projects[user_list][download][type] = "git"
+projects[user_list][download][url] = "git://github.com/QScience/UserList.git"
 
 
 ; Libraries
