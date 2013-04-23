@@ -10,7 +10,6 @@
  *  - Disable reporting of projects that are in the distribution, but only
  *    if they have not been updated manually.
  *    See http://drupalcode.org/project/commerce_kickstart.git/blob/HEAD:/commerce_kickstart.profile (l.171)
- *  - themes/shiny can be fetched via drupal-org.make file
  *    
  */
 
@@ -230,15 +229,15 @@ function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
       drupal_set_message(t('Public key saved succesfully.'));
     }
     elseif ($ret->result === 1) {
-      drupal_set_message(t('Cannot save public key at server side. Maybe there is no permission to do that.'), 'error');
+      drupal_set_message(st('Cannot save public key at server side. Maybe there is no permission to do that.'), 'error');
       //      dvm($ret_pure);
     }
     else {
-      drupal_set_message(t('Invalid server address.'), 'error');
+      drupal_set_message(st('Invalid server address.'), 'error');
     }
   }
   else {
-    drupal_set_message(t("Unrecognized message from server.
+    drupal_set_message(st("Unrecognized message from server.
     Please check again your server's URL at $pdf_parser_link menu."), 'error');
     drupal_set_message($ret_pure, 'error');
   }
@@ -475,7 +474,7 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
   );*/
   $form['name'] = array(
       '#type' => 'textfield',
-      '#title' => t('Name'),
+      '#title' => st('Name'),
       '#description' => t('A short name describing your instance.'),
       '#default_value' => _d2d_suggest_instance_name($GLOBALS['base_url']),
       '#size' => D2D_INSTANCE_NAME_MAX_LENGTH,
@@ -484,9 +483,9 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
   );
   $form['id'] = array(
       '#type' => 'textfield',
-      '#title' => t('D2D Identifier'),
+      '#title' => st('D2D Identifier'),
       '#description' =>
-      t(
+      st(
           'A random Globally unique identifier has been automatically created. In case you need to modify it it should consist of exactly @length hexadecimal characters (A-F, 0-9).<br/>' .
           'Note: once you have saved the global identifier, it cannot be changed anymore.',
           array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)
@@ -498,8 +497,8 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
   );
   $form['address'] = array(
       '#type' => 'textfield',
-      '#title' => t('Address'),
-      '#description' => t('The address under which this instance is reachable.'),
+      '#title' => st('Address'),
+      '#description' => st('The address under which this instance is reachable.'),
       '#default_value' => $GLOBALS['base_url'] . '/xmlrpc.php',
       '#size' => 40,
       '#maxlength' => D2D_INSTANCE_URL_MAX_LENGTH,
@@ -508,12 +507,12 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
   $form['auto_keys_and_online'] = array(
       '#type' => 'checkbox',
       '#default_value' => TRUE,
-      '#title' => t('Automatically select public / private key pair and go online.'),
-      '#description' => t('If selected, a random public / private key pair is automatically chosen and the instance will be marked as online, i.e. other instances will be able to see this instance and to communicate with this instance. Do not select this option if you want to manually set your public / private key pair, e.g. to reuse keys you have used with an old installation or if you do not want your instance to be online immediatelly.'),
+      '#title' => st('Automatically select public / private key pair and go online.'),
+      '#description' => st('If selected, a random public / private key pair is automatically chosen and the instance will be marked as online, i.e. other instances will be able to see this instance and to communicate with this instance. Do not select this option if you want to manually set your public / private key pair, e.g. to reuse keys you have used with an old installation or if you do not want your instance to be online immediatelly.'),
   );
   $form['submit'] = array(
       '#type' => 'submit',
-      '#value' => t('Save and continue'),
+      '#value' => st('Save and continue'),
   );
   /*$form['generate'] = array(
       '#type' => 'submit',
