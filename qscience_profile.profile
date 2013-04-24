@@ -167,10 +167,15 @@ function install_welcome_submit($form, &$form_state) {
  */
 function qscience_profile_form_install_configure_form_alter(&$form, $form_state) {
   // Set a default name for the site
-  $form['site_information']['site_name']['#default_value'] = st('QScience Instance');
+  $form['site_information']['site_name']['#default_value'] = st('My QScience web site');
 
-  // Testing a default country so we can benefit from it on Address Fields. 
-  $form['server_settings']['site_default_country']['#default_value'] = 'BE';
+  // Get public IP and query geopluging to obtain the country code of the server 
+  $externalIp = file_get_contents('http://phihag.de/ip/');
+  $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$externalIp));  
+  if($ip_data && $ip_data->geoplugin_countryCode != null)
+  {
+    $form['server_settings']['site_default_country']['#default_value'] = $ip_data->geoplugin_countryCode;
+  }
 
   // Hide Update Notifications.
   $form['update_notifications']['#access'] = FALSE;
