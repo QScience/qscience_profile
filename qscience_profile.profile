@@ -169,9 +169,9 @@ function qscience_profile_form_install_configure_form_alter(&$form, $form_state)
   // Set a default name for the site
   $form['site_information']['site_name']['#default_value'] = st('My QScience web site');
 
-  // Get public IP and query geopluging to obtain the country code of the server 
-  $externalIp = file_get_contents('http://phihag.de/ip/');
-  $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$externalIp));  
+  // Get public IP and query geoplugin to obtain the country code of the server 
+  $external_ip = file_get_contents('http://phihag.de/ip/');
+  $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $external_ip));  
   if($ip_data && $ip_data->geoplugin_countryCode != null)
   {
     $form['server_settings']['site_default_country']['#default_value'] = $ip_data->geoplugin_countryCode;
