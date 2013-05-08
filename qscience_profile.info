@@ -48,8 +48,8 @@ dependencies[] = pdfparser
 dependencies[] = d2d
 dependencies[] = livingscience
 ; This two custom modules will probably be merged in the next version of livingscience. @TO-DO: Revise
-dependencies[] = visualscience
-dependencies[] = user_list
+;dependencies[] = visualscience
+;dependencies[] = user_list
 
 files[] = qscience_profile.profile
 
