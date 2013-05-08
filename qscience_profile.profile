@@ -32,12 +32,6 @@ function qscience_profile_install_tasks() {
       'type' => 'form',
   );
   
-  // Add a page to configure Visual Science
-  $tasks['qscience_profile_visualscience_settings_form'] = array(
-   'display_name' => st('Visual Science'),
-      'type' => 'form',
-  );
-  
   // Add a page to configure D2D
   $tasks['qscience_profile_d2d_settings_form'] = array(
       'display_name' => st('Drupal to Drupal'),
@@ -402,67 +396,6 @@ function qscience_profile_qtr_settings_form_submit($form, &$form_state) {
   drupal_set_message(st('QTR settings have been successfully saved.'));
 }
 
-
-/**
- * Implements qscience_profile_visualscience_settings_form().
- * 
- *  @TODO: Ask if we need to expand this form with fields from the rest of the related custom modules. 
- */
-function qscience_profile_visualscience_settings_form($form, &$form_state, &$install_state) {
-  drupal_set_title(st('Visual Science settings'));
-  
-  $form['livingscience_first_name'] = array(
-      '#type' => 'textfield',
-      '#default_value' => variable_get('livingscience_first_name', 'first_name'),
-      '#title' => st('The name of the field to be used as the FIRST NAME of the author'),
-     	'#autocomplete_path' => 'livingscience/fields/autocomplete',
-      '#required' => FALSE,
-  );
-  
-  $form['livingscience_last_name'] = array(
-      '#type' => 'textfield',
-      '#default_value' => variable_get('livingscience_last_name', 'last_name'),
-      '#title' => st('The name of the field to be used as the LAST NAME of the author'),
-     	'#autocomplete_path' => 'livingscience/fields/autocomplete',
-      '#required' => FALSE,
-  );
-  
-  $form['livingscience_full_name'] = array(
-      '#type' => 'textfield',
-      '#default_value' => variable_get('livingscience_full_name', ''),
-      '#title' => st('The name of the field to be used as the FULL NAME of the author. If not empty, the first and last name fields will be ignored.'),
-     	'#autocomplete_path' => 'livingscience/fields/autocomplete',
-      '#required' => FALSE,
-  );
-  $form['submit'] = array(
-      '#type' => 'submit',
-      '#value' => st('Save'),
-  );
-  return $form;
-
-}
-
-/**
- * Implements qscience_profile_visualscience_settings_form_validate().
- * 
- * @TO-DO: Ask if some validation is required
- */
-function qscience_profile_visualscience_settings_form_validate($form, &$form_state) {
-  if (strlen(trim($form_state['values']['livingscience_first_name'])) == 0 &&
-      strlen(trim($form_state['values']['livingscience_last_name'])) == 0 &&
-      strlen(trim($form_state['values']['livingscience_full_name'])) == 0)
-  {
-    form_set_error('', st('Please fill in at least one of the fields.'));
-  }
-}
-
-/**
- * Implements qscience_profile_pdfparser_settings_form_submit().
- */
-function qscience_profile_visualscience_settings_form_submit($form, &$form_state) {
-  variable_set('livingscience_first_name', $form_state['values']['livingscience_first_name']);
-  variable_set('livingscience_last_name', $form_state['values']['livingscience_last_name']);
-}
 
 /**
  * Implements qscience_profile_d2d_settings_form().
