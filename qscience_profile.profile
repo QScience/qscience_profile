@@ -579,11 +579,10 @@ function qscience_profile_patterns_share_form($form, &$form_state, &$install_sta
   drupal_set_title(st('Share my QScience configuration'));
   
   $patterns_server_link = l("Patterns Server", "http://www.drupal-patterns.org", array('attributes' => array('target' => '_blank')));
+  $message = '<p>' . st('We are currently studying the evolution of "patterns" of configuration between different Qscience instances') .'</p>';
+  $message .= '<p>' . st('By clicking the checkbox below you will help us with our research it by sharing the configuration you have just applied in our central !patterns_server_link. Thanks in advance for your collaboration!.', array('!patterns_server_link' => $patterns_server_link)) .'</p>';
   $form['share_message'] = array(
-      '#markup' => st('We are currently studying the evolution of "patterns" of configuration between different
-        Qscience instances. By clicking the checkbox below you will help us to research it by sending the configuration
-        you have just applied in our central !patterns_server_link. Thanks in advance for your collaboration!.',
-          array('!patterns_server_link' => $patterns_server_link)),
+      '#markup' => $message,
   );
   $form['share'] = array(
       '#title' => st('I agree to share my configuration'),
