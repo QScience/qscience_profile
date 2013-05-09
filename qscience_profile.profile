@@ -44,6 +44,13 @@ function qscience_profile_install_tasks() {
       'display_name' => st('Choose Content Types'),
       'type' => 'form',
   );*/
+  
+  // Add a page to share the configuration in a Pattern
+  $tasks['qscience_profile_patterns_share_form'] = array(
+      'display_name' => st('Share my configuration'),
+      'type' => 'form',
+  );
+  
   return $tasks;
 }
 
@@ -563,6 +570,38 @@ function qscience_profile_patterns_settings_form_submit($form, &$form_state) {
       db_query("UPDATE {patterns} SET status = :en, enabled = :time WHERE pid = :pid", $query_params);
     }
   }
+}
+
+/**
+ * Implements qscience_profile_patterns_share_form().
+ */
+function qscience_profile_patterns_share_form($form, &$form_state, &$install_state) {
+  drupal_set_title(st('Share my QScience configuration'));
+  
+  $patterns_server_link = l("Patterns Server", "http://www.drupal-patterns.org", array('attributes' => array('target' => '_blank')));
+  $form['share_message'] = array(
+      '#markup' => st('We are currently studying the evolution of "patterns" of configuration between different
+        Qscience instances. By clicking the checkbox below you will help us to research it by sending the configuration
+        you have just applied in our central !patterns_server_link. Thanks in advance for your collaboration!.',
+          array('!patterns_server_link' => $patterns_server_link)),
+  );
+  $form['share'] = array(
+      '#title' => st('I agree to share my configuration'),
+      '#type' => 'checkbox',
+  );
+  $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => st('Continue'),
+  );
+  return $form;
+}
+
+/**
+ * Implements qscience_profile_patterns_shares_form_submit().
+ * Generates and send to the server the merged pattern.
+ */
+function qscience_profile_patterns_share_form_submit($form, &$form_state) {
+  // TO-DO
 }
 
 /**
