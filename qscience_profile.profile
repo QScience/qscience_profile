@@ -53,8 +53,6 @@ function qscience_profile_install_tasks() {
 function qscience_profile_install_tasks_alter(&$tasks, $install_state) {
   $tasks['install_finished']['function'] = 'qscience_profile_install_finished';
   $tasks['install_select_profile']['display'] = FALSE;
-  //$tasks['install_select_locale']['display'] = FALSE;
-  //$tasks['install_select_locale']['run'] = INSTALL_TASK_SKIP;
 
   // The "Welcome" screen needs to come after the first two steps
   // (profile and language selection), despite the fact that they are disabled.
@@ -112,10 +110,10 @@ function install_welcome($form, &$form_state, &$install_state) {
   $message = '<p>' . st('Thank you for choosing QScience, a distribution developed as part of the project !qlectives.', array('!qlectives' => $qlectives_link)) . '</p>';
   $eula = '<p>' . st('QScience is a distributed platform for scientists allowing them to locate or form new communities and quality reviewing mechanisms, which are transparent and promote quality.') . '</p>';
   $items = array();
-  $items[] = st('Describe item 1...');
-  $items[] = st('Describe item 2...');
-  $items[] = st('Describe item N...');
-  $items[] = st('@TO-DO: Do we need to inform the users that some of the info will be stored in external servers (i.e.: PDF Parser server)');
+  $items[] = st('@TO-DO: Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+  $items[] = st('@TO-DO: Maecenas sed rutrum purus. In posuere arcu sed justo rhoncus ac congue velit vehicula.');
+  $items[] = st('@TO-DO: Vivamus viverra massa et dolor sodales eget feugiat sem semper.');
+  $items[] = st('@TO-DO: Inform the users that some of the info will be stored in external servers (i.e.: PDF Parser Server, Patterns Server, D2D Server)');
   $eula .= theme('item_list', array('items' => $items));
   $eula .= '<p>' . st('!qlectives is supported by the European Commission 7th Framework Programme (FP7) for Research and Technological Development under the Information and Communication Technologies Theme, Future and Emerging Technologies (FET) Proactive, Call 3: ICT-2007.8.4 Science of Complex Systems for socially intelligent ICT (COSI-ICT).', array('!qlectives' => $qlectives_link)) . '</p>';
   $form = array();
@@ -151,7 +149,6 @@ function install_welcome_submit($form, &$form_state) {
   global $install_state;
 
   $install_state['parameters']['welcome'] = 'done';
-  //$install_state['parameters']['locale'] = 'en';
 }
 
 /**
@@ -224,20 +221,15 @@ function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
   $ret = json_decode($ret_pure);
   $pdf_parser_link = l('PDFparser settings', 'admin/pdfparser');
   if (isset($ret->result)) {
-    if ($ret->result === 0) {
-      drupal_set_message(t('Public key saved succesfully.'));
-    }
-    elseif ($ret->result === 1) {
+    if ($ret->result === 1) {
       drupal_set_message(st('Cannot save public key at server side. Maybe there is no permission to do that.'), 'error');
       //      dvm($ret_pure);
-    }
-    else {
+    }elseif ($ret->result != 0){
       drupal_set_message(st('Invalid server address.'), 'error');
     }
   }
   else {
-    drupal_set_message(st("Unrecognized message from server.
-    Please check again your server's URL at $pdf_parser_link menu."), 'error');
+    drupal_set_message(st("Unrecognized message from server. Please check again your server's URL at $pdf_parser_link menu."), 'error');
     drupal_set_message($ret_pure, 'error');
   }
 }
@@ -247,7 +239,6 @@ function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
  */
 function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state) {
   drupal_set_title(st('Configure QTR algorithm'));
-  //$form = array();
   $posttype = array ();
   $default = array();
   $types = qtr_get_itemtype();
@@ -400,7 +391,6 @@ function qscience_profile_qtr_settings_form_submit($form, &$form_state) {
       qtr_update_actionweight($action->action, $params['qtr_w_' . $action->action]);
     }
   }
-  drupal_set_message(st('QTR settings have been successfully saved.'));
 }
 
 
@@ -414,9 +404,6 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
   
   $form = array();
   
-  /*$form['introduction'] = array(
-      '#markup' => t('Before using D2D, please provide a @length characters long D2D identifier. This identifier should be unique among all installations of D2D. It is recommended to generate that identifier randomly (e.g. by using the button below). If you installed D2D before, you can reuse the identifier of your old installation.', array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)),
-  );*/
   $form['name'] = array(
       '#type' => 'textfield',
       '#title' => st('Name'),
@@ -459,12 +446,6 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
       '#type' => 'submit',
       '#value' => st('Save and continue'),
   );
-  /*$form['generate'] = array(
-      '#type' => 'submit',
-      '#value' => t('Generate random identifier'),
-      '#validate' => array('d2d_form_init_generate_validate'),
-      '#submit' => array(),
-  );*/
   return $form;
 }
 
@@ -522,9 +503,6 @@ function qscience_profile_d2d_settings_form_submit($form, &$form_state) {
     ->execute();
     variable_set('d2d_online', TRUE);
   }
-  //menu_rebuild();
-  //drupal_set_message(t('Settings have been saved.'));
-
 }
 
 /**
