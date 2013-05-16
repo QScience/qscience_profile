@@ -576,15 +576,19 @@ function qscience_profile_patterns_settings_form_submit($form, &$form_state) {
 function qscience_profile_patterns_share_form($form, &$form_state, &$install_state) {
   drupal_set_title(st('Share my QScience configuration'));
   
-  $patterns_server_link = l("Patterns Server", "http://www.drupal-patterns.org", array('attributes' => array('target' => '_blank')));
-  $message = '<p>' . st('We are currently studying the evolution of "patterns" of configuration between different Qscience instances') .'</p>';
-  $message .= '<p>' . st('By clicking the checkbox below you will help us with our research it by sharing the configuration you have just applied in our central !patterns_server_link. Thanks in advance for your collaboration!.', array('!patterns_server_link' => $patterns_server_link)) .'</p>';
+  $patterns_server_link = l("Drupal-patterns.org", "http://www.drupal-patterns.org", array('attributes' => array('target' => '_blank')));
+  $message = '<p>' . st('Thanks for configuring your QScience instance. You can now share your configuration on !patterns_server_link. 
+    By doing so, you will spare somebody else the time to go through all the options again, and just install your configuration as a pattern file. 
+    No sensitive content of your web site will be transmitted during this process.', array('!patterns_server_link' => $patterns_server_link)) .'</p>';
+  $message .= '<p>' . st('Besides, you will contribute a little piece to the evolution of the best configuration of QScience software!') .'</p>';
+  $message .= '<p>' . st('Thanks for participating in the QScience project.') .'</p>';
   $form['share_message'] = array(
       '#markup' => $message,
   );
   $form['share'] = array(
       '#title' => st('I agree to share my configuration'),
       '#type' => 'checkbox',
+      '#default_value' => TRUE,
   );
   $form['submit'] = array(
       '#type' => 'submit',
