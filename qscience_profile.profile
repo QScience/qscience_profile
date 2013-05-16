@@ -258,12 +258,10 @@ function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state
     $posttype[$type] = $type_obj->name;
   }
 
-  $qtr_link = l("Measuring quality, reputation and trust in online communities", "http://arxiv.org/pdf/1208.4042.pdf", array('attributes' => array('target' => '_blank')));
   $form['qtr_message'] = array(
-      '#markup' => st('QTR is a general ranking method that can simultaneously
-        evaluate users reputation and objects quality in an iterative procedure, and that
-        exploits the trust relationships and social acquaintances of users as an additional source
-        of information. Please read "!qtr_link" for further information.', array('!qtr_link' => $qtr_link)),
+      '#markup' => st('Actions performed on those nodes will be included in the calculations of the QTR index. 
+          E.g.: an article with many views will have be considered of high quality, and will generate an high 
+          reputation for its author.'),
   );
   $form['basic'] = array(
       '#type' => 'fieldset',
