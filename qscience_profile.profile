@@ -309,7 +309,7 @@ function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state
   $form['params']['qtr_tau0'] = array(
       '#type' => 'textfield',
       '#title' => st('Time scale of the decay (day)'),
-      '#default_value' => variable_get('qtr_tau0', 50),
+      '#default_value' => variable_get('qtr_tau0', 1),
   );
   
   $form['params']['qtr_renorm_q'] = array(
@@ -321,7 +321,7 @@ function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state
   $form['params']['qtr_renorm_r'] = array(
       '#type' => 'textfield',
       '#title' => st('Renormalization of reputation'),
-      '#default_value' => variable_get('qtr_renorm_r', 0),
+      '#default_value' => variable_get('qtr_renorm_r', 1),
   );
   
   $form['params']['qtr_renorm_t'] = array(
@@ -333,7 +333,7 @@ function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state
   $form['params']['qtr_resc_q'] = array(
       '#type' => 'textfield',
       '#title' => st('Rescaled quality'),
-      '#default_value' => variable_get('qtr_resc_q', 0),
+      '#default_value' => variable_get('qtr_resc_q', 1),
   );
   
   $form['params']['qtr_resc_r'] = array(
