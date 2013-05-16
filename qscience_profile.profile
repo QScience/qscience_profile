@@ -247,17 +247,12 @@ function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
 function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state) {
   drupal_set_title(st('Configure QTR algorithm'));
   $posttype = array ();
-  $default = array();
-  $types = qtr_get_itemtype();
-  if($types){
-    foreach($types as $type){
-      $default[]=$type->item_type;
-    }
-  }
   foreach (node_type_get_types() as $type => $type_obj) {
     $posttype[$type] = $type_obj->name;
   }
-
+  //Set content types to be used by QTR by default
+  $posttype_default = array('paper');
+  
   $form['qtr_message'] = array(
       '#markup' => st('Actions performed on those nodes will be included in the calculations of the QTR index. 
           E.g.: an article with many views will have be considered of high quality, and will generate an high 
@@ -280,7 +275,7 @@ function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state
       '#title' => st('Content Types '),
       '#description' => st('These will be the nodes that will be considered for QTR'),
       '#options' => $posttype,
-      '#default_value' => $default,
+      '#default_value' => $posttype_default,
   );
   $form['params']['qtr_delta'] = array(
       '#type' => 'textfield',
