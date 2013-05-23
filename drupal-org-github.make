@@ -35,8 +35,14 @@ projects[auto_nodetitle][version] = "1.0"
 projects[entity][subdir] = "contrib"
 projects[entity][version] = "1.0"
 
-projects[entityreference][subdir] = "contrib"
-projects[entityreference][version] = "1.0"
+; Replacing the contrib one for the one in github. @TO-DO: we will need to do this with a patch for the official release
+;projects[entityreference][subdir] = "contrib"
+;projects[entityreference][version] = "1.0"
+projects[entityreference][type] = "module"
+projects[entityreference][subdir] = "custom"
+projects[entityreference][download][type] = "git"
+projects[entityreference][download][url] = "git://github.com/QScience/entityreference_lazyreference.git"
+projects[entityreference][download][branch] = "1848496-lazy_reference"
 
 projects[views][subdir] = "contrib"
 projects[views][version] = "3.7"
