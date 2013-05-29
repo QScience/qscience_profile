@@ -258,8 +258,8 @@ function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state
   
   $form['qtr_message'] = array(
       '#markup' => st('Actions performed on those nodes will be included in the calculations of the QTR index. 
-          E.g.: an article with many views will have be considered of high quality, and will generate an high 
-          reputation for its author.'),
+          E.g.: an article with many views will be considered of a high quality, and will generate a high 
+          reputation for its author. @TO-DO: Add a link to QTR measures'),
   );
   $form['basic'] = array(
       '#type' => 'fieldset',
