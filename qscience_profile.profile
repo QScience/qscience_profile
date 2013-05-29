@@ -576,9 +576,9 @@ function qscience_profile_patterns_share_form($form, &$form_state, &$install_sta
   
   $patterns_server_link = l("Drupal-patterns.org", "http://www.drupal-patterns.org", array('attributes' => array('target' => '_blank')));
   $message = '<p>' . st('Thanks for configuring your QScience instance. You can now share your configuration on !patterns_server_link. 
-    By doing so, you will spare somebody else the time to go through all the options again, and just install your configuration as a pattern file. 
-    No sensitive content of your web site will be transmitted during this process.', array('!patterns_server_link' => $patterns_server_link)) .'</p>';
-  $message .= '<p>' . st('Besides, you will contribute a little piece to the evolution of the best configuration of QScience software!') .'</p>';
+    By doing this your configuration can be installed by future QScience users. 
+    At this stage no content of your web site will be transmitted during this process.', array('!patterns_server_link' => $patterns_server_link)) .'</p>';
+  $message .= '<p>' . st('What\'s more, you will be contributing to the evolution of optimal QScience configurations!') .'</p>';
   $message .= '<p>' . st('Thanks for participating in the QScience project.') .'</p>';
   $form['share_message'] = array(
       '#markup' => $message,
