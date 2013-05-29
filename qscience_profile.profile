@@ -185,6 +185,9 @@ function qscience_profile_form_install_configure_form_alter(&$form, $form_state)
 function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install_state) {
   drupal_set_title(st('PDF Parser settings'));
   
+  $form['pdfparser_message'] = array(
+      '#markup' => st('@TO-DO: Add a description and a link to a manual on "How to set up your own server" (if feasible)'),
+  );
   $form['server_url'] = array(
       '#type' => 'textfield',
       '#title' => 'The server URL',
