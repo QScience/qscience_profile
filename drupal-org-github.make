@@ -120,7 +120,7 @@ projects[visualscience][download][url] = "git://github.com/QScience/VisualScienc
 projects[visualscience_docgraph][type] = "module"
 projects[visualscience_docgraph][subdir] = "custom"
 projects[visualscience_docgraph][download][type] = "git"
-projects[visualscience_docgraph][download][url] = "git@github.com:QScience/visualscience_docgraph.git"
+projects[visualscience_docgraph][download][url] = "git://github.com/QScience/visualscience_docgraph.git"
 
 ; Libraries
 
