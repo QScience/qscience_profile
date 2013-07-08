@@ -117,6 +117,10 @@ projects[visualscience][download][url] = "git://github.com/QScience/VisualScienc
 ;projects[user_list][download][type] = "git"
 ;projects[user_list][download][url] = "git://github.com/QScience/UserList.git"
 
+projects[visualscience_docgraph][type] = "module"
+projects[visualscience_docgraph][subdir] = "custom"
+projects[visualscience_docgraph][download][type] = "git"
+projects[visualscience_docgraph][download][url] = "git@github.com:QScience/visualscience_docgraph.git"
 
 ; Libraries
 
