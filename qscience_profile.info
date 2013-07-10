@@ -46,9 +46,7 @@ dependencies[] = qtr
 dependencies[] = pdfparser
 dependencies[] = d2d
 dependencies[] = visualscience
-; This two custom modules will probably be merged in the next version of livingscience. @TO-DO: Revise
-;dependencies[] = livingscience
-;dependencies[] = user_list
+dependencies[] = visualscience_docgraph
 
 files[] = qscience_profile.profile
 
