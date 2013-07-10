@@ -330,3 +330,9 @@ html.js #-commerce-kickstart-help-store fieldset.collapsible {
   float: left;
   margin-right: 15px;
 }
+
+/* Quick fix for expandable options overlapping issue */
+body.in-maintenance fieldset .fieldset-legend {
+  font-size: 15px;
+  margin-top: 13px;
+}
