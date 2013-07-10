@@ -15,8 +15,26 @@ projects[macro][subdir] = "contrib"
 projects[macro][version] = "1.0-alpha2"
 
 ;This branch of the installation profile is based on 7.x-2.x-dev. This will need to be udpated to point to the new release
-projects[patterns][subdir] = "contrib"
-projects[patterns][version] = "2.x-dev"
+;projects[patterns][subdir] = "contrib"
+;projects[patterns][version] = "2.x-dev"
+; Using the github version instead, to include the parenthood branch and patterns_client/server
+projects[patterns][type] = "module"
+projects[patterns][subdir] = "custom"
+projects[patterns][download][type] = "git"
+projects[patterns][download][url] = "git://github.com/QScience/Patterns.git"
+projects[patterns][download][branch] = "7.x-2.x"
+
+projects[patterns_client][type] = "module"
+projects[patterns_client][subdir] = "custom"
+projects[patterns_client][download][type] = "git"
+projects[patterns_client][download][url] = "git://github.com/QScience/patterns_client.git"
+projects[patterns_client][download][branch] = "parenthood"
+
+projects[patterns_server][type] = "module"
+projects[patterns_server][subdir] = "custom"
+projects[patterns_server][download][type] = "git"
+projects[patterns_server][download][url] = "git://github.com/QScience/patterns_server.git"
+projects[patterns_server][download][branch] = "parenthood"
 
 projects[token][subdir] = "contrib"
 projects[token][version] = "1.5"

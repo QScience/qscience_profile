@@ -38,6 +38,7 @@ dependencies[] = patterns_components
 dependencies[] = patterns_xmlparser
 dependencies[] = patterns_phpparser
 dependencies[] = patterns_yamlparser
+dependencies[] = patterns_client
 
 ;Enable custom modules
 dependencies[] = qscience
