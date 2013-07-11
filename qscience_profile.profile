@@ -452,12 +452,6 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
     '#type' => 'submit', 
     '#value' => t('Save and continue'),
   );
-  $form['generate'] = array(
-    '#type' => 'submit', 
-    '#value' => t('Generate different random identifier'),
-    '#validate' => array('d2d_form_init_generate_validate'),
-    '#submit' => array(),
-  );
   return $form;
 }
 
