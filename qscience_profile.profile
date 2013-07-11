@@ -417,7 +417,7 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
     '#default_value' => _d2d_suggest_instance_name($GLOBALS['base_url']),
     '#size' => D2D_INSTANCE_NAME_MAX_LENGTH,
     '#maxlength' => D2D_INSTANCE_NAME_MAX_LENGTH,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   $form['id'] = array(
     '#type' => 'textfield',
@@ -431,7 +431,7 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
     '#default_value' => d2d_random_d2d_id(),
     '#size' => D2D_INSTANCE_IDENTIFIER_LENGTH,
     '#maxlength' => D2D_INSTANCE_IDENTIFIER_LENGTH,
-    '#required' => FALSE, // length is checked anyway, no error if 'generate'-button is pressed
+    '#required' => TRUE, // length is checked anyway, no error if 'generate'-button is pressed
   );
   $form['address'] = array(
     '#type' => 'textfield',
@@ -444,7 +444,7 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
   );
   $form['auto_keys_and_online'] = array(
     '#type' => 'checkbox',
-    '#default_value' => FALSE,
+    '#default_value' => TRUE,
     '#title' => t('Automatically select public / private key pair and go online.'),
     '#description' => t('If selected, a random public / private key pair is automatically chosen and the instance will be marked as online, i.e. other instances will be able to see this instance and to communicate with this instance. Do not select this option if you want to manually set your public / private key pair, e.g. to reuse keys you have used with an old installation or if you do not want your instance to be online immediatelly.'),
   );
