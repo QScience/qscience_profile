@@ -512,8 +512,6 @@ function qscience_profile_d2d_settings_form_submit($form, &$form_state) {
     'text' => t('As a first step you might want to add other Drupal installations running D2D to your list of instances and send them a friendship request. Have fun!'),
   ));
   d2d_api_notification_insert('d2d_message', $my_d2d_id, $content);
-  menu_rebuild();
-  drupal_set_message(t('Settings have been saved.'));
 }
 
 /**
