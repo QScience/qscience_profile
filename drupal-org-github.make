@@ -72,13 +72,13 @@ projects[filefield_sources][subdir] = "contrib"
 projects[filefield_sources][version] = "1.7"
 
 projects[date][subdir] = "contrib"
-projects[entity][version] = "2.6"
+projects[date][version] = "2.6"
 
 projects[ctools][subdir] = "contrib"
-projects[entity][version] = "1.3"
+projects[ctools][version] = "1.3"
 
 projects[plus1][subdir] = "contrib"
-projects[entity][version] = "1.0-alpha1"
+projects[plus1][version] = "1.0-alpha1"
 
 projects[votingapi][subdir] = "contrib"
 projects[votingapi][version] = "2.11"
