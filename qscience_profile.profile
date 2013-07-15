@@ -206,7 +206,7 @@ function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install
  * Checks that a successful response from the PDF Parser server is received.
  */
 function qscience_profile_pdfparser_settings_form_validate($form, &$form_state) {
-  $url = $form_state['input']['server_url'];
+  $url = $form_state['values']['server_url'];
   $file_headers = @get_headers($url);
   if ($file_headers === FALSE || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
     form_set_error('server_url', t('Invalid url, please check again.'));
@@ -219,7 +219,7 @@ function qscience_profile_pdfparser_settings_form_validate($form, &$form_state) 
  */
 function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
   $public = _pdfparser_get_public_path();
-  $url = $form_state['input']['server_url'];
+  $url = $form_state['values']['server_url'];
   variable_set('pdfparser_server_url', $url);
   $file = $public . variable_get('pdfparser_public_key_path') . 'public_key';
   $post = new stdClass();
@@ -228,20 +228,6 @@ function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
   $post->public_key = base64_encode(file_get_contents($file));
   
   $ret_pure = do_post_request2($url, json_encode($post));
-  $ret = json_decode($ret_pure);
-  $pdf_parser_link = l('PDFparser settings', 'admin/pdfparser');
-  if (isset($ret->result)) {
-    if ($ret->result === 1) {
-      drupal_set_message(st('Cannot save public key at server side. Maybe there is no permission to do that.'), 'error');
-      //      dvm($ret_pure);
-    }elseif ($ret->result != 0){
-      drupal_set_message(st('Invalid server address.'), 'error');
-    }
-  }
-  else {
-    drupal_set_message(st("Unrecognized message from server. Please check again your server's URL at $pdf_parser_link menu."), 'error');
-    drupal_set_message($ret_pure, 'error');
-  }
 }
 
 /**
