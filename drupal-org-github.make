@@ -140,6 +140,12 @@ projects[visualscience_docgraph][subdir] = "custom"
 projects[visualscience_docgraph][download][type] = "git"
 projects[visualscience_docgraph][download][url] = "git://github.com/QScience/visualscience_docgraph.git"
 
+; Adding pils for optional installation of patterns_server
+projects[pils][type] = "module"
+projects[pils][subdir] = "custom"
+projects[pils][download][type] = "git"
+projects[pils][download][url] = "git://github.com/QScience/pils.git"
+
 ; Libraries
 
 ; Spyc (YAML parser): required by patterns_yamlparser submodule
