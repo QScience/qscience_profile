@@ -184,24 +184,20 @@ function qscience_profile_form_install_configure_form_alter(&$form, $form_state)
  */
 function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install_state) {
   drupal_set_title(st('PDF Parser'));
-  
-  /*$form['pdfparser_message'] = array(
-      '#markup' => st('PDF Parser allows you to upload and parse automatically papers\' authors and references'),
-      '#default_value' => TRUE,
-  );*/
-  $pdfparser_szeged_link = l("University of Szeged", "http://www.inf.u-szeged.hu/starten.xml", array('attributes' => array('target' => '_blank')));
+  $pdfparser_szeged_link = l("University of Szeged", "http://www.inf.u-szeged.hu/rgai/?lang=en", array('attributes' => array('target' => '_blank')));
   $pdfparser_instructions_link = l("instructions", "https://github.com/QScience/pdfparser-server/blob/master/README", array('attributes' => array('target' => '_blank')));
+
   $form['pdfparser_enable'] = array(
       '#title' => st('Enable PDF Parser module'),
       '#type' => 'checkbox',
       '#default_value' => TRUE,
-      '#description' => st('PDF Parser allows you to upload and parse automatically papers\' authors and references'),
+      '#description' => st('PDF Parser allows you to upload and parse automatically papers\' authors and references.'),
   );
   $form['server_url'] = array(
       '#type' => 'textfield',
-      '#title' => 'PDF Parser server',
+      '#title' => 'Server URL',
       '#value' => variable_get('pdfparser_server_url'),
-      '#description' => st('You can use our PDF Parser server (hosted at the !szeged) or follow these !instructions to set up your own server.', 
+      '#description' => st('You can use our PDF Parser server (hosted at the !szeged) or follow these !instructions to set up your own server. Your public key will be sent to the server.', 
         array('!szeged' => $pdfparser_szeged_link, '!instructions' => $pdfparser_instructions_link)),
       '#states' => array(
           'disabled' => array(
@@ -218,14 +214,16 @@ function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install
 }
 
 /**
- * Implements qscience_profile_pdfparser_settings_form_submit().
- * Checks that a successful response from the PDF Parser server is received.
+ * Implements qscience_profile_pdfparser_settings_form_validate().
+ * Checks that the URL is a valid one
  */
 function qscience_profile_pdfparser_settings_form_validate($form, &$form_state) {
-  $url = $form_state['values']['server_url'];
-  $file_headers = @get_headers($url);
-  if ($file_headers === FALSE || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
-    form_set_error('server_url', t('Invalid url, please check again.'));
+  // Check URL only if the module is going to be enabled
+  if ($form_state['values']['pdfparser_enable']) {
+    $file_headers = @get_headers($form_state['values']['server_url']);
+    if ($file_headers === FALSE || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
+      form_set_error('server_url', t('Invalid url, please check again.'));
+    }
   }
 }
 
