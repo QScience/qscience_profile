@@ -183,20 +183,36 @@ function qscience_profile_form_install_configure_form_alter(&$form, $form_state)
  * Implements qscience_profile_pdfparser_settings_form().
  */
 function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install_state) {
-  drupal_set_title(st('PDF Parser settings'));
+  drupal_set_title(st('PDF Parser'));
   
-  $form['pdfparser_message'] = array(
-      '#markup' => st('@TO-DO: Add a description and a link to a manual on "How to set up your own server" (if feasible)'),
+  /*$form['pdfparser_message'] = array(
+      '#markup' => st('PDF Parser allows you to upload and parse automatically papers\' authors and references'),
+      '#default_value' => TRUE,
+  );*/
+  $pdfparser_szeged_link = l("University of Szeged", "http://www.inf.u-szeged.hu/starten.xml", array('attributes' => array('target' => '_blank')));
+  $pdfparser_instructions_link = l("instructions", "https://github.com/QScience/pdfparser-server/blob/master/README", array('attributes' => array('target' => '_blank')));
+  $form['pdfparser_enable'] = array(
+      '#title' => st('Enable PDF Parser module'),
+      '#type' => 'checkbox',
+      '#default_value' => TRUE,
+      '#description' => st('PDF Parser allows you to upload and parse automatically papers\' authors and references'),
   );
   $form['server_url'] = array(
       '#type' => 'textfield',
-      '#title' => 'The server URL',
+      '#title' => 'PDF Parser server',
       '#value' => variable_get('pdfparser_server_url'),
+      '#description' => st('You can use our PDF Parser server (hosted at the !szeged) or follow these !instructions to set up your own server.', 
+        array('!szeged' => $pdfparser_szeged_link, '!instructions' => $pdfparser_instructions_link)),
+      '#states' => array(
+          'disabled' => array(
+              ':input[name="pdfparser_enable"]' => array('checked' => FALSE),
+          ),
+      ),
   );
   
   $form['submit'] = array(
       '#type' => 'submit',
-      '#value' => t('Send my public key to server'),
+      '#value' => t('Continue'),
   );
   return $form;
 }
