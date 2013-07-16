@@ -44,7 +44,8 @@ dependencies[] = patterns_client
 dependencies[] = qscience
 dependencies[] = arxiv
 dependencies[] = qtr
-dependencies[] = pdfparser
+;Removing pdfparser to allow enabling it optionally
+;dependencies[] = pdfparser
 dependencies[] = d2d
 dependencies[] = visualscience
 dependencies[] = visualscience_docgraph

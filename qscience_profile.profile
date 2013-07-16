@@ -196,7 +196,7 @@ function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install
   $form['server_url'] = array(
       '#type' => 'textfield',
       '#title' => 'Server URL',
-      '#value' => variable_get('pdfparser_server_url'),
+      '#value' => variable_get('pdfparser_server_url', 'http://www.inf.u-szeged.hu/rgai/~kojak/parser_server/'),
       '#description' => st('You can use our PDF Parser server (hosted at the !szeged) or follow these !instructions to set up your own server. Your public key will be sent to the server.', 
         array('!szeged' => $pdfparser_szeged_link, '!instructions' => $pdfparser_instructions_link)),
       '#states' => array(
@@ -232,16 +232,20 @@ function qscience_profile_pdfparser_settings_form_validate($form, &$form_state) 
  * Merges and executes the selected Patterns.
  */
 function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
-  $public = _pdfparser_get_public_path();
-  $url = $form_state['values']['server_url'];
-  variable_set('pdfparser_server_url', $url);
-  $file = $public . variable_get('pdfparser_public_key_path') . 'public_key';
-  $post = new stdClass();
-  $post->func = 'set_public_key';
-  $post->ip = $_SERVER['SERVER_ADDR'];
-  $post->public_key = base64_encode(file_get_contents($file));
-  
-  $ret_pure = do_post_request2($url, json_encode($post));
+  // Enable PDF module if selected in the task
+  if ($form_state['values']['pdfparser_enable']) {
+    if (module_enable(array('pdfparser'), TRUE)) {
+      $public = _pdfparser_get_public_path();
+      $url = $form_state['values']['server_url'];
+      variable_set('pdfparser_server_url', $url);
+      $file = $public . variable_get('pdfparser_public_key_path') . 'public_key';
+      $post = new stdClass();
+      $post->func = 'set_public_key';
+      $post->ip = $_SERVER['SERVER_ADDR'];
+      $post->public_key = base64_encode(file_get_contents($file));
+      $ret_pure = do_post_request2($url, json_encode($post));
+    }
+  }
 }
 
 /**
