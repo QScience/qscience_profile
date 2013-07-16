@@ -40,12 +40,10 @@ dependencies[] = patterns_phpparser
 dependencies[] = patterns_yamlparser
 dependencies[] = patterns_client
 
-;Enable custom modules
+;Enable "mandatory" custom modules
 dependencies[] = qscience
 dependencies[] = arxiv
 dependencies[] = qtr
-;Removing pdfparser to allow enabling it optionally
-;dependencies[] = pdfparser
 dependencies[] = d2d
 dependencies[] = visualscience
 dependencies[] = visualscience_docgraph
