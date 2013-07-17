@@ -414,7 +414,9 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
   $form = array();
 
   $form['introduction'] = array(
-      '#markup' => t('Before using D2D, please provide a @length characters long D2D identifier. This identifier should be unique among all installations of D2D. It is recommended to generate that identifier randomly (e.g. by using the button below). If you installed D2D before, you can reuse the identifier of your old installation.', array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)),
+      '#markup' => t('D2D ("Drupal-to-Drupal") is a module to built-up a network among Drupal instances.
+          Using public key cryptography, an instance can implement secure XML-RPC methods that can be called by friend instances.
+          Friends are organized in groups to allow privileged access to particular methods.', array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)),
   );
   $form['name'] = array(
     '#type' => 'textfield',
@@ -428,12 +430,9 @@ function qscience_profile_d2d_settings_form($form, &$form_state, &$install_state
   $form['id'] = array(
     '#type' => 'textfield',
     '#title' => t('D2D Identifier'),
-    '#description' =>
-      t(
-        'Globally unique identifier consisting of exactly @length hexadecimal characters (A-F, 0-9).<br/>' . 
-        'Note: once you have saved the global identifier, it cannot be changed anymore.',
-        array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)
-      ),
+    '#description' => t('This identifier should be unique among all installations of D2D. 
+        It is recommended to generate that identifier randomly (e.g. by using the button below). If you installed D2D before, you can reuse the 
+        identifier of your old installation.', array('@length' => D2D_INSTANCE_IDENTIFIER_LENGTH)),
     '#default_value' => d2d_random_d2d_id(),
     '#size' => D2D_INSTANCE_IDENTIFIER_LENGTH,
     '#maxlength' => D2D_INSTANCE_IDENTIFIER_LENGTH,
