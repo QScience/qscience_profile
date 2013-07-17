@@ -115,12 +115,11 @@ function install_welcome($form, &$form_state, &$install_state) {
   drupal_set_title(st('Welcome to QScience'));
   $qlectives_link = l("QLectives", "http://www.qlectives.eu", array('attributes' => array('target' => '_blank')));
   $message = '<p>' . st('Thank you for choosing QScience, a distribution developed as part of the project !qlectives.', array('!qlectives' => $qlectives_link)) . '</p>';
-  $eula = '<p>' . st('QScience is a distributed platform for scientists allowing them to locate or form new communities and quality reviewing mechanisms, which are transparent and promote quality.') . '</p>';
+  $eula = '<p>' . st('QScience is a free, open source, distributed platform tailored to support the needs of modern scholarly communities. QScience offers a free, open source, web 2.0 venue for scientists to meet and discuss about science. Display of ratings of articles, users reputation and indexes of scholarly productivity are among the supported features, however what really distinguish QScience from other analogous software and web site are the following principles:') . '</p>';
   $items = array();
-  $items[] = st('@TO-DO: Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
-  $items[] = st('@TO-DO: Maecenas sed rutrum purus. In posuere arcu sed justo rhoncus ac congue velit vehicula.');
-  $items[] = st('@TO-DO: Vivamus viverra massa et dolor sodales eget feugiat sem semper.');
-  $items[] = st('@TO-DO: Inform the users that some of the info will be stored in external servers (i.e.: PDF Parser Server, Patterns Server, D2D Server)');
+  $items[] = st('Reclaim your data: No sign-up, no central authority. Get QScience, install it, be online. Share what you want with whom you want.');
+  $items[] = st('Networked Mind: A QScience instance is never isolated, but rather belongs to a network of relevant communities, among which data can be searched for, shared, and exchanged in a totally secure way with strong cryptography techniques.');
+  $items[] = st('Customization in Evolution: QScience is fully customizable to fit different purposes, e.g. a scholarly discussion forum, a research group home page or a research project web site. When you personalize your own QScience instance, you generate a modified version of QScience, that automatically becomes available to the world for download. In this way QScience keeps updated to the needs of the users.');
   $eula .= theme('item_list', array('items' => $items));
   $eula .= '<p>' . st('!qlectives is supported by the European Commission 7th Framework Programme (FP7) for Research and Technological Development under the Information and Communication Technologies Theme, Future and Emerging Technologies (FET) Proactive, Call 3: ICT-2007.8.4 Science of Complex Systems for socially intelligent ICT (COSI-ICT).', array('!qlectives' => $qlectives_link)) . '</p>';
   $form = array();
