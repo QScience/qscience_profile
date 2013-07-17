@@ -131,7 +131,7 @@ function install_welcome($form, &$form_state, &$install_state) {
       '#markup' => $eula,
   );
   $form['eula-accept'] = array(
-      '#title' => st('I agree to the terms'),
+      '#title' => st('I would like to install a QScience instance'),
       '#type' => 'checkbox',
       '#suffix' => '</div>',
   );
