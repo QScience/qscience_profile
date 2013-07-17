@@ -38,13 +38,6 @@ function qscience_profile_install_tasks() {
       'type' => 'form',
   );
   
-  // Add a page to allow running some patterns
-  // Skipping this for the moment
-  /*$tasks['qscience_profile_patterns_settings_form'] = array(
-      'display_name' => st('Choose Content Types'),
-      'type' => 'form',
-  );*/
-  
   // Add a page to share the configuration in a Pattern
   $tasks['qscience_profile_patterns_share_form'] = array(
       'display_name' => st('Share my configuration'),
@@ -207,7 +200,7 @@ function qscience_profile_pdfparser_settings_form($form, &$form_state, &$install
   
   $form['submit'] = array(
       '#type' => 'submit',
-      '#value' => t('Continue'),
+      '#value' => t('Save and continue'),
   );
   return $form;
 }
@@ -354,7 +347,7 @@ function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state
   
   $form['submit'] = array(
       '#type' => 'submit',
-      '#value' => st('Save'),
+      '#value' => st('Save and continue'),
   );
   return $form;
 }
@@ -595,7 +588,7 @@ function qscience_profile_patterns_share_form($form, &$form_state, &$install_sta
   );
   $form['submit'] = array(
       '#type' => 'submit',
-      '#value' => st('Continue'),
+      '#value' => st('Save and continue'),
   );
   return $form;
 }
