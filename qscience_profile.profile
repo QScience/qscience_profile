@@ -252,6 +252,8 @@ function qscience_profile_pdfparser_settings_form_submit($form, &$form_state) {
  */
 function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state) {
   drupal_set_title(st('Configure QTR algorithm'));
+  $qlectives_link = l("Measuring quality, reputation and trust in online communities", "http://arxiv.org/abs/1208.4042", array('attributes' => array('target' => '_blank')));
+  
   $posttype = array ();
   foreach (node_type_get_types() as $type => $type_obj) {
     $posttype[$type] = $type_obj->name;
@@ -262,7 +264,8 @@ function qscience_profile_qtr_settings_form($form, &$form_state, &$install_state
   $form['qtr_message'] = array(
       '#markup' => st('Actions performed on those nodes will be included in the calculations of the QTR index. 
           E.g.: an article with many views will be considered of a high quality, and will generate a high 
-          reputation for its author. @TO-DO: Add a link to QTR measures'),
+          reputation for its author. Further information about the QTR algorith can be found in the following paper: !qtr_paper', 
+          array('!qtr_paper' => $qlectives_link)),
   );
   $form['basic'] = array(
       '#type' => 'fieldset',
