@@ -107,7 +107,9 @@ function _commerce_kickstart_set_theme($target_theme) {
 function install_welcome($form, &$form_state, &$install_state) {
   drupal_set_title(st('Welcome to QScience'));
   $qlectives_link = l("QLectives", "http://www.qlectives.eu", array('attributes' => array('target' => '_blank')));
-  $message = '<p>' . st('Thank you for choosing QScience, a distribution developed as part of the project !qlectives.', array('!qlectives' => $qlectives_link)) . '</p>';
+  $qscience_link = l("QScience", "http://qscience.inn.ac", array('attributes' => array('target' => '_blank')));
+  
+  $message = '<p>' . st('Thank you for choosing !qscience, a distribution developed as part of the project !qlectives.', array('!qlectives' => $qlectives_link, '!qscience' => $qscience_link)) . '</p>';
   $eula = '<p>' . st('QScience is a free, open source, distributed platform tailored to support the needs of modern scholarly communities. QScience offers a free, open source, web 2.0 venue for scientists to meet and discuss about science. Display of ratings of articles, users reputation and indexes of scholarly productivity are among the supported features, however what really distinguish QScience from other analogous software and web site are the following principles:') . '</p>';
   $items = array();
   $items[] = st('Reclaim your data: No sign-up, no central authority. Get QScience, install it, be online. Share what you want with whom you want.');
