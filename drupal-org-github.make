@@ -30,12 +30,6 @@ projects[patterns_client][download][type] = "git"
 projects[patterns_client][download][url] = "git://github.com/QScience/patterns_client.git"
 projects[patterns_client][download][branch] = "parenthood"
 
-projects[patterns_server][type] = "module"
-projects[patterns_server][subdir] = "custom"
-projects[patterns_server][download][type] = "git"
-projects[patterns_server][download][url] = "git://github.com/QScience/patterns_server.git"
-projects[patterns_server][download][branch] = "parenthood"
-
 projects[token][subdir] = "contrib"
 projects[token][version] = "1.5"
 
@@ -124,27 +118,10 @@ projects[visualscience][subdir] = "custom"
 projects[visualscience][download][type] = "git"
 projects[visualscience][download][url] = "git://github.com/QScience/VisualScience.git"
 
-; Visualscience custom modules dependencies. @TO-DO: This might disappear with the new branch
-;projects[livingscience][type] = "module"
-;projects[livingscience][subdir] = "custom"
-;projects[livingscience][download][type] = "git"
-;projects[livingscience][download][url] = "git://github.com/QScience/livingscience.git"
-
-;projects[user_list][type] = "module"
-;projects[user_list][subdir] = "custom"
-;projects[user_list][download][type] = "git"
-;projects[user_list][download][url] = "git://github.com/QScience/UserList.git"
-
 projects[visualscience_docgraph][type] = "module"
 projects[visualscience_docgraph][subdir] = "custom"
 projects[visualscience_docgraph][download][type] = "git"
 projects[visualscience_docgraph][download][url] = "git://github.com/QScience/visualscience_docgraph.git"
-
-; Adding pils for optional installation of patterns_server
-projects[pils][type] = "module"
-projects[pils][subdir] = "custom"
-projects[pils][download][type] = "git"
-projects[pils][download][url] = "git://github.com/QScience/pils.git"
 
 ; Libraries
 
