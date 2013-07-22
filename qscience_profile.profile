@@ -615,7 +615,7 @@ function qscience_profile_patterns_share_form_submit($form, &$form_state) {
 function qscience_profile_install_finished(&$install_state) {
   drupal_set_title(st('QScience installation complete'), PASS_THROUGH);
   $messages = drupal_set_message();
-  $output = '<p>' . st('Congratulations, you installed a QScience instance!.') . '</p>';
+  $output = '<p>' . st('Congratulations, you installed a QScience instance!') . '</p>';
   $output .= '<p>' . (isset($messages['error']) ? st('Review the messages above before visiting <a href="@url">your new site</a>.', array('@url' => url(''))) : st('<a href="@url">Visit your new site</a>.', array('@url' => url('')))) . '</p>';
 
   // Flush all caches to ensure that any full bootstraps during the installer
